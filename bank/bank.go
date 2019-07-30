@@ -1,14 +1,16 @@
 package bank
 
+import "sync"
+
 var (
-	sema    = make(chan struct{}, 1) // Бинарный семафор для
+	mu      sync.Mutex
 	balance int
 )
 
 func Deposit(amount int) {
-	sema <- struct{}{}
+	mu.Lock()
 	deposit(amount)
-	<-sema
+	mu.Unlock()
 }
 
 func deposit(amount int) {
@@ -16,16 +18,16 @@ func deposit(amount int) {
 }
 
 func Balance() int {
-	sema <- struct{}{}
+	mu.Lock()
 	b := balance
-	<-sema
+	mu.Unlock()
 	return b
 }
 
 func WithDraw(amount int) bool {
-	sema <- struct{}{}
+	mu.Lock()
 	defer func() {
-		<-sema
+		mu.Unlock()
 	}()
 	deposit(-amount)
 	if balance < 0 {
