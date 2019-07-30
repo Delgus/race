@@ -1,41 +1,36 @@
 package bank
 
-var deposits = make(chan int)         // Отправление вклада
-var balances = make(chan int)         // Получение баланса
-var withdraws = make(chan int)        //Снятие со счета
-var withdrawSuccess = make(chan bool) //успешное или нет снтие со счета
+type Money struct {
+	money int
+}
+
+var balances = make(chan *Money, 1)
 
 func Deposit(amount int) {
-	deposits <- amount
+	balance := <-balances
+	balance.money += amount
+	balances <- balance
 }
 
 func Balance() int {
-	return <-balances
+	balance := <-balances
+	balances <- balance
+	return balance.money
 }
 
 func WithDraw(amount int) bool {
-	withdraws <- amount
-	return <-withdrawSuccess
-}
-
-func teller() {
-	var balance int // balance ограничен go-подпрограммой teller
-	for {
-		select {
-		case amount := <-deposits:
-			balance += amount
-		case balances <- balance:
-		case amount := <-withdraws:
-			balance -= amount
-			if balance < 0 {
-				balance += amount
-				withdrawSuccess <- false
-			}
-			withdrawSuccess <- true
-		}
+	balance := <-balances
+	defer func() {
+		balances <- balance
+	}()
+	balance.money -= amount
+	if balance.money < 0 {
+		balance.money += amount
+		return false
 	}
+	return true
 }
 
 func init() {
-	go teller() // Запуск управляющей go-подпрограммы
+	balances <- new(Money)
 }
