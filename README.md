@@ -1,0 +1,3 @@
+# race
+
+Гонка в Golang
