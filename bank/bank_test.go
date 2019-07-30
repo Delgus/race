@@ -3,6 +3,7 @@ package bank
 import (
 	"sync"
 	"testing"
+	"time"
 )
 
 func TestRaceDeposit(t *testing.T) {
@@ -21,7 +22,7 @@ func TestRaceDeposit(t *testing.T) {
 }
 
 func TestRaceWithDraw(t *testing.T) {
-	Deposit(1000000)
+	setBalance(1000000)
 	var group sync.WaitGroup
 	group.Add(10000)
 	for i := 0; i < 10000; i++ {
@@ -31,7 +32,32 @@ func TestRaceWithDraw(t *testing.T) {
 		}()
 	}
 	group.Wait()
-	if Balance() != 1000000 {
+	if Balance() != 0 {
+		t.Errorf("unexpected balance: value - %d expect 1000000", Balance())
+	}
+}
+
+func TestRaceWithDraw2(t *testing.T) {
+	setBalance(1000000)
+	var group sync.WaitGroup
+	group.Add(20000)
+	for i := 0; i < 10000; i++ {
+		go func() {
+			if WithDraw(2000000) {
+				t.Error("unexpected true for withdraw")
+			}
+			group.Done()
+		}()
+		go func() {
+			if !WithDraw(100) {
+				t.Error("unexpected false for withdraw")
+			}
+			time.Sleep(time.Nanosecond)
+			group.Done()
+		}()
+	}
+	group.Wait()
+	if Balance() != 0 {
 		t.Errorf("unexpected balance: value - %d expect 1000000", Balance())
 	}
 }
