@@ -3,7 +3,11 @@ package main
 import (
 	"fmt"
 	//bank "github.com/delgus/race/bank/v1"
-	bank "github.com/delgus/race/bank/v2"
+	//bank "github.com/delgus/race/bank/v2"
+	//bank "github.com/delgus/race/bank/v3"
+	//bank "github.com/delgus/race/bank/v4"
+	//bank "github.com/delgus/race/bank/v5"
+	bank "github.com/delgus/race/bank/v6"
 	"sync"
 )
 
