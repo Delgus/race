@@ -1,4 +1,4 @@
-package bank
+package v4
 
 type Money struct {
 	money int
