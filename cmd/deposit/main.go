@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/delgus/race/bank"
+	//bank "github.com/delgus/race/bank/v1"
+	bank "github.com/delgus/race/bank/v2"
 	"sync"
 )
 
