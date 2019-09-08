@@ -1,4 +1,4 @@
-package bank
+package v5
 
 var (
 	sema    = make(chan struct{}, 1) // Бинарный семафор для
