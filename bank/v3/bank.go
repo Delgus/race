@@ -1,4 +1,4 @@
-package bank
+package v3
 
 var deposits = make(chan int)         // Отправление вклада
 var balances = make(chan int)         // Получение баланса
