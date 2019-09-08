@@ -1,4 +1,4 @@
-package bank
+package v6
 
 import "sync"
 
