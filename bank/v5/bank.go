@@ -1,7 +1,7 @@
 package v5
 
 var (
-	sema    = make(chan struct{}, 1) // Бинарный семафор для
+	sema    = make(chan struct{}, 1) //семафор для блокировок
 	balance int
 )
 

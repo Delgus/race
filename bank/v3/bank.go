@@ -30,8 +30,9 @@ func teller() {
 			if balance < 0 {
 				balance += amount
 				withdrawSuccess <- false
+			} else {
+				withdrawSuccess <- true
 			}
-			withdrawSuccess <- true
 		}
 	}
 }
