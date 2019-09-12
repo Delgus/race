@@ -1,42 +1,28 @@
 package v6
 
-import "sync"
-
-var (
-	mu      sync.Mutex
-	balance int
+import (
+	"sync/atomic"
 )
 
-func Deposit(amount int) {
-	mu.Lock()
-	deposit(amount)
-	mu.Unlock()
+var balance int64
+
+func Deposit(amount int64) {
+	atomic.AddInt64(&balance, amount)
 }
 
-func deposit(amount int) {
-	balance = balance + amount
+func Balance() int64 {
+	return balance
 }
 
-func Balance() int {
-	mu.Lock()
-	b := balance
-	mu.Unlock()
-	return b
-}
-
-func WithDraw(amount int) bool {
-	mu.Lock()
-	defer func() {
-		mu.Unlock()
-	}()
-	deposit(-amount)
+func WithDraw(amount int64) bool {
+	Deposit(-amount)
 	if balance < 0 {
-		deposit(amount)
+		Deposit(amount)
 		return false
 	}
 	return true
 }
 
-func setBalance(count int) {
+func setBalance(count int64) {
 	balance = count
 }
