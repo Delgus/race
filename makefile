@@ -1,6 +1,4 @@
 PKG := "github.com/delgus/race"
-PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
-GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)
 
 .PHONY: all dep build clean test coverage coverhtml lint
 
@@ -17,10 +15,10 @@ test: ## Run unittests
 	@go tool cover -func cover.out
 
 build: ## Build the binary file
-	@go build -a -o deposit -v $(PKG)/cmd/deposit
+	@go build -a -o mybank -v $(PKG)/cmd/bank
 
 clean: ## Remove previous build
-	@rm -f deposit
+	@rm -f mybank
 
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
