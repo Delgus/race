@@ -15,7 +15,7 @@ test: ## Run unittests
 	@go tool cover -func cover.out
 
 build: ## Build the binary file
-	@go build -a -o mybank -v $(PKG)/cmd/bank
+	@go build -race -a -o mybank -v $(PKG)/cmd/bank
 
 clean: ## Remove previous build
 	@rm -f mybank

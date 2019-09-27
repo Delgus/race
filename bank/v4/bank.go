@@ -4,7 +4,7 @@ type money struct {
 	count int
 }
 
-var balances = make(chan *money,1)
+var balances = make(chan *money, 1)
 
 func Deposit(amount int) {
 	balance := <-balances
@@ -33,4 +33,9 @@ func WithDraw(amount int) bool {
 
 func init() {
 	balances <- new(money)
+}
+
+func setBalance(amount int) {
+	<-balances
+	balances <- &money{count: amount}
 }

@@ -3,7 +3,7 @@ package v3
 var deposits = make(chan int)         // Отправление вклада
 var balances = make(chan int)         // Получение баланса
 var withdraws = make(chan int)        //Снятие со счета
-var withdrawSuccess = make(chan bool) //успешное или нет снтие со счета
+var withdrawSuccess = make(chan bool) //успешное или нет снятие со счета
 
 func Deposit(amount int) {
 	deposits <- amount

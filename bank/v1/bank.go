@@ -9,3 +9,7 @@ func Deposit(amount int) {
 func Balance() int {
 	return balance
 }
+
+func setBalance(amount int) {
+	balance = amount
+}

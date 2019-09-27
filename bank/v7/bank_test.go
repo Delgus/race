@@ -6,6 +6,7 @@ import (
 )
 
 func TestDeposit(t *testing.T) {
+	setBalance(0)
 	Deposit(100)
 	if Balance() != 100 {
 		t.Errorf("unexpected balance: value - %d expect 100", Balance())
