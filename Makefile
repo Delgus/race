@@ -12,7 +12,6 @@ lint: ## Lint the files
 
 test: ## Run unittests
 	@go test -short ./... -coverprofile=coverage.txt
-	@go tool cover -func cover.out
 
 build: ## Build the binary file
 	@go build -a -o mybank -v $(PKG)/cmd/bank
