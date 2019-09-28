@@ -5,6 +5,7 @@ var (
 	balance int
 )
 
+//Deposit ...
 func Deposit(amount int) {
 	sema <- struct{}{}
 	deposit(amount)
@@ -15,6 +16,7 @@ func deposit(amount int) {
 	balance = balance + amount
 }
 
+//Balance ...
 func Balance() int {
 	sema <- struct{}{}
 	b := balance

@@ -1,21 +1,23 @@
 package v4
 
-type money struct {
-	count int
+type purse struct {
+	money int
 }
 
-var balances = make(chan *money, 1)
+var balances = make(chan *purse, 1)
 
+//Deposit ...
 func Deposit(amount int) {
 	balance := <-balances
-	balance.count += amount
+	balance.money += amount
 	balances <- balance
 }
 
+//Balance ...
 func Balance() int {
 	balance := <-balances
 	balances <- balance
-	return balance.count
+	return balance.money
 }
 
 func WithDraw(amount int) bool {
@@ -23,19 +25,19 @@ func WithDraw(amount int) bool {
 	defer func() {
 		balances <- balance
 	}()
-	balance.count -= amount
-	if balance.count < 0 {
-		balance.count += amount
+	balance.money -= amount
+	if balance.money < 0 {
+		balance.money += amount
 		return false
 	}
 	return true
 }
 
 func init() {
-	balances <- new(money)
+	balances <- new(purse)
 }
 
 func setBalance(amount int) {
 	<-balances
-	balances <- &money{count: amount}
+	balances <- &purse{money: amount}
 }

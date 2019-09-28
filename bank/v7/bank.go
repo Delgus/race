@@ -6,14 +6,17 @@ import (
 
 var balance int64
 
+//Deposit ...
 func Deposit(amount int64) {
 	atomic.AddInt64(&balance, amount)
 }
 
+//Balance ...
 func Balance() int64 {
 	return balance
 }
 
+//WithDraw ...
 func WithDraw(amount int64) bool {
 	Deposit(-amount)
 	if balance < 0 {

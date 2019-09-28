@@ -7,6 +7,7 @@ var (
 	balance int
 )
 
+//Deposit ...
 func Deposit(amount int) {
 	mu.Lock()
 	deposit(amount)
@@ -17,6 +18,7 @@ func deposit(amount int) {
 	balance = balance + amount
 }
 
+//Balance ...
 func Balance() int {
 	mu.Lock()
 	b := balance

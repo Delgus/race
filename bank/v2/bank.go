@@ -3,9 +3,12 @@ package v2
 var deposits = make(chan int) // Отправление вклада
 var balances = make(chan int) // Получение баланса
 
+//Deposit ...
 func Deposit(amount int) {
 	deposits <- amount
 }
+
+//Balance ...
 func Balance() int {
 	return <-balances
 }

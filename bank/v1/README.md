@@ -2,18 +2,18 @@
 
 Первая версия банка.
 
-Функции:
-Balance - получить баланс
-Deposit - положить на счет
+Функции:  
+Balance - получить баланс  
+Deposit - положить на счет  
 
 Бенчмарк
 ```
 goos: linux
 goarch: amd64
 pkg: github.com/delgus/race/bank/v1
-BenchmarkBalance-2      300000000                4.24 ns/op            0 B/op          0 allocs/op
+BenchmarkBalance-2      300000000                4.33 ns/op            0 B/op          0 allocs/op
 PASS
-ok      github.com/delgus/race/bank/v1  1.707s
+ok      github.com/delgus/race/bank/v1  1.775s
 ```
 
 PS. Кажется безопасной ведь тесты проходят норм

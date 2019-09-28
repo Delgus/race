@@ -15,10 +15,13 @@ test: ## Run unittests
 	@go tool cover -func cover.out
 
 build: ## Build the binary file
-	@go build -race -a -o mybank -v $(PKG)/cmd/bank
+	@go build -a -o mybank -v $(PKG)/cmd/bank
 
 clean: ## Remove previous build
 	@rm -f mybank
+
+bench: ## Benchmark for code
+	@go test ./... -bench=. -benchmem
 
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
