@@ -1,7 +1,7 @@
 ### История одного банка: Смертельные гонки
 
-[![Build Status](https://travis-ci.org/Delgus/race.svg?branch=master)](https://travis-ci.org/Delgus/race.svg?branch=master) 
-[![codecov](https://codecov.io/gh/Delgus/race/branch/master/graph/badge.svg)](https://codecov.io/gh/Delgus/race/branch/master/graph/badge.svg)
+[![Build Status](https://travis-ci.org/Delgus/race.svg?branch=master)](https://travis-ci.org/Delgus/race) 
+[![codecov](https://codecov.io/gh/Delgus/race/branch/master/graph/badge.svg)](https://codecov.io/gh/Delgus/race)
 
 [Банк v 1.0.0](https://github.com/Delgus/race/blob/master/bank/v1/README.md)  
 [Банк v 2.0.0](https://github.com/Delgus/race/blob/master/bank/v2/README.md)  
