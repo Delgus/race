@@ -1,6 +1,6 @@
 PKG := "github.com/delgus/race"
 
-.PHONY: all dep build clean test coverage coverhtml lint
+.PHONY: all fmt lint test build clean bench help
 
 all: build
 
