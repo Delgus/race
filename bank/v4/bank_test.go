@@ -1,7 +1,6 @@
 package v4
 
 import (
-	"sync"
 	"testing"
 )
 
@@ -41,21 +40,8 @@ func TestWithDrawError(t *testing.T) {
 }
 
 func TestRaceDeposit(t *testing.T) {
-	setBalance(0)
-	var wg sync.WaitGroup
-	wg.Add(10)
-	for i := 0; i < 10; i++ {
-		go func() {
-			Deposit(10)
-			wg.Done()
-		}()
-	}
-	wg.Wait()
-	expect := 100
-	got := Balance()
-	if got != expect {
-		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
-	}
+	go Deposit(10)
+	Deposit(10)
 }
 
 func BenchmarkBalance(b *testing.B) {
