@@ -7,8 +7,11 @@ import (
 
 func TestDeposit(t *testing.T) {
 	Deposit(100)
-	if Balance() != 100 {
-		t.Errorf("unexpected balance: value - %d expect 100", Balance())
+	expect := 100
+	got := Balance()
+	if got != expect {
+		t.Errorf(
+			"unexpected balance: value - %d expect %d", got, expect)
 	}
 }
 
@@ -22,8 +25,10 @@ func TestRaceDeposit(t *testing.T) {
 		}()
 	}
 	wg.Wait()
-	if Balance() != 200 {
-		t.Errorf("unexpected balance: value - %d expect 200", Balance())
+	expect := 200 //из прежнего кейса на балансе осталось 100
+	got := Balance()
+	if got != expect {
+		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
 	}
 }
 

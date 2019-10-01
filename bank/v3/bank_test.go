@@ -7,15 +7,19 @@ import (
 
 func TestDeposit(t *testing.T) {
 	Deposit(100)
-	if Balance() != 100 {
-		t.Errorf("unexpected balance: value - %d expect 100", Balance())
+	expect := 100
+	got := Balance()
+	if got != expect {
+		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
 	}
 }
 
 func TestWithDrawSuccess(t *testing.T) {
 	result := WithDraw(100)
-	if Balance() != 0 {
-		t.Errorf("unexpected balance: value - %d expect 100", Balance())
+	expect := 0
+	got := Balance()
+	if got != expect {
+		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
 	}
 	if !result {
 		t.Error("unexpected result: value - false expect true")
@@ -24,8 +28,10 @@ func TestWithDrawSuccess(t *testing.T) {
 
 func TestWithDrawError(t *testing.T) {
 	result := WithDraw(100)
-	if Balance() != 0 {
-		t.Errorf("unexpected balance: value - %d expect 100", Balance())
+	expect := 0
+	got := Balance()
+	if got != expect {
+		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
 	}
 	if result {
 		t.Error("unexpected result: value - true, expect false")
@@ -42,8 +48,10 @@ func TestRaceDeposit(t *testing.T) {
 		}()
 	}
 	wg.Wait()
-	if Balance() != 100 {
-		t.Errorf("unexpected balance: value - %d expect 200", Balance())
+	expect := 100
+	got := Balance()
+	if got != expect {
+		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
 	}
 }
 
