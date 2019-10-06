@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	bank "github.com/delgus/race/bank/v1"
 	"sync"
+
+	bank "github.com/delgus/race/bank/v2"
 )
 
 func main() {
