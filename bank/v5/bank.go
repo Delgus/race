@@ -1,40 +1,45 @@
 package v5
 
+import "sync"
+
 var (
-	sema    = make(chan struct{}, 1) //семафор для блокировок
+	mu      sync.Mutex
 	balance int
 )
 
 //Deposit ...
 func Deposit(amount int) {
-	sema <- struct{}{}
+	mu.Lock()
 	deposit(amount)
-	<-sema
+	mu.Unlock()
+}
+
+//Balance ...
+func Balance() int {
+	mu.Lock()
+	b := balance
+	mu.Unlock()
+	return b
+}
+
+//WithDraw ...
+func WithDraw(amount int) bool {
+	mu.Lock()
+	defer mu.Unlock()
+	withDraw(amount)
+	if balance < 0 {
+		deposit(amount)
+		return false
+	}
+	return true
 }
 
 func deposit(amount int) {
 	balance = balance + amount
 }
 
-//Balance ...
-func Balance() int {
-	sema <- struct{}{}
-	b := balance
-	<-sema
-	return b
-}
-
-func WithDraw(amount int) bool {
-	sema <- struct{}{}
-	defer func() {
-		<-sema
-	}()
-	deposit(-amount)
-	if balance < 0 {
-		deposit(amount)
-		return false
-	}
-	return true
+func withDraw(amount int) {
+	balance = balance - amount
 }
 
 func setBalance(count int) {

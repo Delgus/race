@@ -20,10 +20,9 @@ build: ## Build the binary file
 	@go build -a -o bin/bank4 -v $(PKG)/cmd/bank4
 	@go build -a -o bin/bank5 -v $(PKG)/cmd/bank5
 	@go build -a -o bin/bank6 -v $(PKG)/cmd/bank6
-	@go build -a -o bin/bank7 -v $(PKG)/cmd/bank7
 
 clean: ## Remove previous build
-	@rm -f bin/bank1 bin/bank2 bin/bank3 bin/bank4 bin/bank5 bin/bank6 bin/bank7
+	@rm -f bin/bank1 bin/bank2 bin/bank3 bin/bank4 bin/bank5 bin/bank6
 
 bench: ## Benchmark for code
 	@go test ./... -bench=. -benchmem

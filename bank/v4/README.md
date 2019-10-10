@@ -1,8 +1,8 @@
-### Bank v 4.0.0
+### Bank v 5.0.0
 
-Четвертый релиз банка. Переписан полностью. Конвейер  
+Пятый релиз банка. Переписан полностью. Семафор  
 
-Функции:  
+Функции:
 Balance - получить баланс  
 Deposit - положить на счет  
 WithDraw - снять деньги со счета  
@@ -11,10 +11,10 @@ WithDraw - снять деньги со счета
 ```
 goos: linux
 goarch: amd64
-pkg: github.com/delgus/race/bank/v4
-BenchmarkBalance-2      10000000               156 ns/op               0 B/op          0 allocs/op
-BenchmarkWithDraw-2      5000000               277 ns/op               0 B/op          0 allocs/op
+pkg: github.com/delgus/race/bank/v5
+BenchmarkBalance-2      10000000               128 ns/op               0 B/op          0 allocs/op
+BenchmarkWithDraw-2     10000000               216 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/delgus/race/bank/v4  3.405s
+ok      github.com/delgus/race/bank/v5  3.841s
 ```
-Поддерживать код стало не легче
+Поддерживать код стало легче. Если ты конечно понимаешь что такое каналы

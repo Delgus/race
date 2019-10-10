@@ -1,22 +1,23 @@
-### Bank v 6.0.0 
+### Bank v 7.0.0 
 
-Шестой релиз банка. Переписан полностью на mutex
+Седьмой релиз банка. Ядерный банк)
 
 Функции:  
 Balance - получить баланс  
 Deposit - положить на счет  
 WithDraw - снять деньги со счета  
 
+тип баланса изменен на int64
+
 Бенчмарк
 ```
 goos: linux
 goarch: amd64
-pkg: github.com/delgus/race/bank/v6
-BenchmarkBalance-2      30000000                41.3 ns/op             0 B/op          0 allocs/op
-BenchmarkWithDraw-2     20000000               121 ns/op               0 B/op          0 allocs/op
+pkg: github.com/delgus/race/bank/v7
+BenchmarkBalance-2      100000000               15.4 ns/op             0 B/op          0 allocs/op
+BenchmarkWithDraw-2     50000000                25.5 ns/op             0 B/op          0 allocs/op
 PASS
-ok      github.com/delgus/race/bank/v6  3.842s
+ok      github.com/delgus/race/bank/v7  2.876s
 ```
 
-
-Код легко поддерживать, скорость чумачечая
+А так можно было? Это вообще законно

@@ -7,7 +7,7 @@ import (
 func TestDeposit(t *testing.T) {
 	setBalance(0)
 	Deposit(100)
-	expect := 100
+	var expect int64 = 100
 	got := Balance()
 	if got != expect {
 		t.Errorf(
@@ -17,7 +17,7 @@ func TestDeposit(t *testing.T) {
 
 func TestWithDrawSuccess(t *testing.T) {
 	result := WithDraw(100)
-	expect := 0
+	var expect int64 = 0
 	got := Balance()
 	if got != expect {
 		t.Errorf("unexpected balance: value - %d expect %d", got, expect)
@@ -29,7 +29,7 @@ func TestWithDrawSuccess(t *testing.T) {
 
 func TestWithDrawError(t *testing.T) {
 	result := WithDraw(100)
-	expect := 0
+	var expect int64 = 0
 	got := Balance()
 	if got != expect {
 		t.Errorf("unexpected balance: value - %d expect %d", got, expect)

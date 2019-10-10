@@ -1,8 +1,8 @@
-### Bank v 5.0.0
+### Bank v 6.0.0 
 
-Пятый релиз банка. Переписан полностью. Семафор  
+Шестой релиз банка. Переписан полностью на mutex
 
-Функции:
+Функции:  
 Balance - получить баланс  
 Deposit - положить на счет  
 WithDraw - снять деньги со счета  
@@ -11,10 +11,12 @@ WithDraw - снять деньги со счета
 ```
 goos: linux
 goarch: amd64
-pkg: github.com/delgus/race/bank/v5
-BenchmarkBalance-2      10000000               128 ns/op               0 B/op          0 allocs/op
-BenchmarkWithDraw-2     10000000               216 ns/op               0 B/op          0 allocs/op
+pkg: github.com/delgus/race/bank/v6
+BenchmarkBalance-2      30000000                41.3 ns/op             0 B/op          0 allocs/op
+BenchmarkWithDraw-2     20000000               121 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/delgus/race/bank/v5  3.841s
+ok      github.com/delgus/race/bank/v6  3.842s
 ```
-Поддерживать код стало легче. Если ты конечно понимаешь что такое каналы
+
+
+Код легко поддерживать, скорость чумачечая
