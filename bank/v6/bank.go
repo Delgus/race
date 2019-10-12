@@ -13,7 +13,7 @@ func Deposit(amount int64) {
 
 //Balance ...
 func Balance() int64 {
-	return balance
+	return atomic.LoadInt64(&balance)
 }
 
 //WithDraw ...
