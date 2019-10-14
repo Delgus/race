@@ -24,6 +24,7 @@ func Balance() int {
 	return b
 }
 
+//WithDraw ...
 func WithDraw(amount int) bool {
 	sema <- struct{}{}
 	defer func() {
